@@ -4,11 +4,14 @@ This project uses a multi-agent assistant using LangGraph and LangChain , which 
 
 The main goal for the project is to demonstrate:
 
-- Multi-agent architecture design
-- LLM models integration language
-- Best practives for model structure, configuration and documentation
+- Multi-agent architecture design using LangGraph
+- Intelligent routing of user queries
+- Integration of Large Language Models (LLMs)
+- Use of external APIs without authentication keys
+- Retrieval-Augmented Generation (RAG) over local documents
+- Best practices for project structure, configuration, and documentation
 
-## Estructura del Proyecto
+## Project Architecture Overview
 
 ```
 src/
@@ -23,7 +26,9 @@ src/
 ├── tools/
 │   ├── weather_service.py # API Open-Meteo
 │   ├── crypto_service.py  # API public currencies
-│   └── geocoding.py       # City - coordinates conversion
+│   └── geocoding.py       # City - coordinates 
+|   └── openmeteo.py       # Weather data
+conversion
 │
 ├── rag/
 │   ├── loader.py          # Local documents load
@@ -31,7 +36,7 @@ src/
 │   └── embeddings.py      # Vectorization (TF-IDF)
 │
 ├── llm/
-│   └── client.py          # LLM client (OpenAI via LangChain)
+│   └── client.py          # LLM client configuration
 │
 tests/                     # Component Unit Test
 data/
@@ -44,33 +49,47 @@ data/
 The sistem is based on:
 
 - **Router (LLM)**  
-  Decides to which agent sent the user request
+
+  The user request using through a mechanism that analyzes user input and determines which specialized agent should handle the request.
   
+  The router prioritizes:
+- Deterministic intent detection
+- LLM-based fallback classification when intent is ambiguous
+
 - **Specialized Agents**
-  - `RagAgent`: Response based on context recovering.
-  - `QaAgent`: Direct responses through one question - one answer mode
-  
+
 - **LangGraph**
-  Node agent management.
+  Node agent management and is used for manage execution flow between agents.
 
 ##  Modules versión used
 
-- **Python 3.11+**
-- **LangGraph**
-- **LangChain**
-- **OpenAI API**
-- **scikit-learn**
-- **python-dotenv** 
+- Python 3.11+
+- LangGraph
+- LangChain
+- OpenAI API (LLM reasoning)
+- Open-Meteo API (weather, no API key)
+- CoinGecko API (crypto prices, no API key)
+- Nominatim OpenStreetMap API (geocoding, no API key)
+- scikit-learn (TF-IDF embeddings)
+- python-dotenv (environment variables
 
 ##  Environment Settings
 
+A Python virtual environment is used to isolate dependencies and ensure reproducibility.
 
 ###  Virtual Enviroment Deployment
+The project used a Python virtual environment for manage the dependences (LangChain, LangGraph)
+
+Virtual Environment creation:
 
 ```bash
 python -m venv venv
 ```
+Virtual Environment activation:
 
+```bash
+venv\Scripts\Activate
+```
 ## Environment Variables Settings
 
 The APY KEY is used for language model (LLM) authentication given by OpenAI
@@ -97,6 +116,8 @@ You:
 ## Implemented Agents 
 
 ### Geocoding Agent (External API)
+
+The Geocoding Agent resolving natural language location queries into precise geographic coordinates using the Nominatim API from OpenStreetMap.
 
 ![alt text](image-4.png)
 
@@ -127,9 +148,24 @@ E.g:
 
 It is created a .txt archive with information in string format.
 
-![alt text](image-2.png)
+![alt text](image-5.png)
 
 When a request is sent to multi-agentit is recognized as a RAG agent. 
 
 ![alt text](image-3.png)
 
+## Final Notes
+
+This project demonstrates how a modular multi-agent system can:
+- Combine LLM reasoning with deterministic logic
+- Integrate external APIs without authentication overhead
+- Extend capabilities through document-based knowledge
+- Scale easily by adding new agents
+
+The architecture is designed to be extensible, maintainable, and aligned with real-world AI system design practices.
+
+Autor: Fabian Leonardo Ortiz Cuevas
+
+Elctronic Engineer
+
+Email: fabioleorcu20@gmail.com
