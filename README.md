@@ -1,62 +1,59 @@
 # Multi-Agent Assistant (LangGraph)
 
-Este proyecto implementa un **asistente multi-agente** utilizando **LangGraph** y **LangChain**, capaz de **enrutar preguntas automáticamente** hacia distintos agentes especializados mediante el uso de un **LLM como router**.
+This project uses a multi-agent assistant using LangGraph and LangChain , which is capable to enroute prompts automatically through specific agents supported by LLM process
 
-El objetivo principal del proyecto es demostrar:
-- Diseño de arquitecturas multi-agente
-- Uso de grafos para routing y handoffs
-- Integración con modelos de lenguaje (LLM)
-- Buenas prácticas de estructura, configuración y documentación
+The main goal for the project is to demonstrate:
 
----
+- Multi-agent architecture design
+- LLM models integration language
+- Best practives for model structure, configuration and documentation
 
 ## Estructura del Proyecto
 
 ```
 src/
-├── app.py                 # Punto de entrada de la aplicación
-├── graph.py               # Definición del flujo multi-agente (LangGraph)
+├── app.py                 # App Entry point
+├── graph.py               # Multi-agent definition process
 │
 ├── agents/
-│   ├── weather_agent.py   # Agente clima (API externa)
-│   ├── crypto_agent.py    # Agente criptomonedas (API externa)
-│   └── rag_agent.py       # Agente RAG sobre documentos locales
+│   ├── weather_agent.py   # weather agent (external API)
+│   ├── crypto_agent.py    # crypto agent (external API)
+│   └── rag_agent.py       # RAG agent over local documents
 │
 ├── tools/
-│   ├── weather_service.py # Consumo API Open-Meteo
-│   ├── crypto_service.py  # Consumo API pública de precios
-│   └── geocoding.py       # Conversión ciudad → coordenadas
+│   ├── weather_service.py # API Open-Meteo
+│   ├── crypto_service.py  # API public currencies
+│   └── geocoding.py       # City - coordinates conversion
 │
 ├── rag/
-│   ├── loader.py          # Carga de documentos locales
-│   ├── chunker.py         # División de texto en fragmentos
-│   └── embeddings.py      # Vectorización (TF-IDF)
+│   ├── loader.py          # Local documents load
+│   ├── chunker.py         # Tex segmentation 
+│   └── embeddings.py      # Vectorization (TF-IDF)
 │
 ├── llm/
-│   └── client.py          # Cliente LLM (OpenAI via LangChain)
+│   └── client.py          # LLM client (OpenAI via LangChain)
 │
-tests/                     # Pruebas unitarias de cada componente
+tests/                     # Component Unit Test
 data/
-└── documents/             # Documentos locales para RAG
+└── documents/             # Local documents over RAG
+
 ```
 
-##  Arquitectura General
+##  General Model Structure
 
-El sistema está compuesto por:
+The sistem is based on:
 
 - **Router (LLM)**  
-  Decide a qué agente enviar la consulta del usuario.
-- **Agentes especializados**
-  - `RagAgent`: Respuestas basadas en recuperación de contexto
-  - `QaAgent`: Respuestas directas tipo pregunta-respuesta
+  Decides to which agent sent the user request
+  
+- **Specialized Agents**
+  - `RagAgent`: Response based on context recovering.
+  - `QaAgent`: Direct responses through one question - one answer mode
+  
 - **LangGraph**
-  Orquesta el flujo entre nodos y agentes.
+  Node agent management.
 
-*El routing se realiza dinámicamente en tiempo de ejecución.*
-
----
-
-##  Tecnologías Utilizadas
+##  Modules versión used
 
 - **Python 3.11+**
 - **LangGraph**
@@ -65,71 +62,70 @@ El sistema está compuesto por:
 - **scikit-learn**
 - **python-dotenv** 
 
-##  Configuración del Entorno
+##  Environment Settings
 
 
-### Crear entorno virtual
+###  Virtual Enviroment Deployment
 
 ```bash
 python -m venv venv
 ```
-s
-## Configurar variables de entorno
 
-La API Key se utiliza para autenticar el acceso al modelo de lenguaje (LLM) proporcionado por OpenAI.
+## Environment Variables Settings
+
+The APY KEY is used for language model (LLM) authentication given by OpenAI
 
 ``` 
 OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxx 
 ```
-Dentro del proyecto, la API Key permite acceder al LLM habilitando los modelos de comunicación con los modelos de OpenAI interpretando las consultas en lenguaje natural.
+The API Key allows the access to LLM , by activating the comunication models with OPen AI models, interpreting every request in natural language process.
 
-### Ejecución del Proyecto
+### Project Execution
 
-Desde la raíz del proyecto:
+From the project root:
 
 ```
 python -m src.app
 ```
-### Salida Esperada
+### Expected Output
 
 ```
 Multi-agent assistant (LangGraph) 🚀
 You:
 ```
 
-## AGENTES IMPLEMENTADOS 
+## Implemented Agents 
 
-### Weather Agent (API Externa)
+### Weather Agent (External API)
 
-Consume la API abierta Open-Meteo, conviertiendo los nombres de ciudades en coordenadas (latituf/longitud)
+Return weather conditions according to request provided by the user, when the question is related with that matter.
 
-Retorna temperatura y condiciones actuales, esta se activa automáticamente cuando la pregunta es sobre clima
-
-Ejemplo:
+E.g:
 
 ![alt text](image.png)
 
-### Crypto Agent (API Externa)
-Realiza consultas de precios actuales de criptomonedas
+### Crypto Agent (External API)
 
-Ejemplo:
+Perform requestes about crypto currencies.
+
+E.g:
 
 ![alt text](image-1.png)
 
-### RAG Agent (Documentos Locales)
+### RAG Agent (Local Documents)
 
-Implementa Retrieval Augmented Generation, carga documentos y archivos .txt con información para su procesamiento.
+(Retrieval Augmented Generation), documents and 
+archives loading in .txt format with key information for processing.
 
-Divide texto en fragmentos y genera embeddings con TF-IDF, recopilando el contexto relevante y lo pasa al LLM
+Text segmentation and embedding with TF-IDF, collecting the relevant context and received by LLM.
 
-Ejemplo:
+E.g:
 
-Se crea un archivo .txt que contiene información en una cadena de texto.
+It is created a .txt archive with information in string format.
 
 ![alt text](image-2.png)
 
-Al sistema Multi_Agente se le realiza la siguiente pregunta y responde identificandolo como RAG Agent.
-
+When a request is sent to multi-agentit is recognized as a RAG agent. 
 
 ![alt text](image-3.png)
 
