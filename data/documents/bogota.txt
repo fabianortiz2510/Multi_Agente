@@ -1,2 +1,28 @@
-Bogotá tiene un clima frío debido a su altitud.
-La temperatura promedio es de 14 grados centígrados.
+Bogotá es la capital de la República de Colombia y la ciudad más poblada del país.
+Está ubicada en el centro del territorio colombiano, sobre la Sabana de Bogotá,
+en la Cordillera Oriental de los Andes, a una altitud aproximada de 2.640 metros
+sobre el nivel del mar.
+
+Debido a su altitud, Bogotá tiene un clima frío templado, con una temperatura
+promedio que oscila entre los 12 y 15 grados Celsius. La ciudad presenta
+variaciones climáticas a lo largo del día, con mañanas frías, tardes templadas
+y noches frías.
+
+Bogotá es el principal centro político, administrativo, económico y cultural
+de Colombia. En ella se encuentran las sedes del Gobierno Nacional, el Congreso
+de la República y la mayoría de las entidades estatales.
+
+La economía de Bogotá se basa en sectores como los servicios, el comercio,
+las finanzas, la tecnología, la educación y la industria. La ciudad concentra
+una parte significativa del producto interno bruto del país.
+
+En términos de movilidad, Bogotá cuenta con sistemas de transporte como
+TransMilenio, el Sistema Integrado de Transporte Público (SITP) y proyectos
+en desarrollo como el Metro de Bogotá.
+
+Bogotá es también un importante centro cultural y académico. Alberga numerosas
+universidades, museos, bibliotecas y espacios culturales, como el Museo del Oro
+y la Biblioteca Luis Ángel Arango.
+
+Gracias a su diversidad cultural y su relevancia nacional, Bogotá desempeña un
+papel fundamental en el desarrollo social y económico de Colombia.

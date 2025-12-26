@@ -96,6 +96,10 @@ You:
 
 ## Implemented Agents 
 
+### Geocoding Agent (External API)
+
+![alt text](image-4.png)
+
 ### Weather Agent (External API)
 
 Return weather conditions according to request provided by the user, when the question is related with that matter.

@@ -1,2 +1,25 @@
-La energía solar es una fuente renovable que reduce la huella de carbono.
-Es clave para cumplir los Objetivos de Desarrollo Sostenible.
+La energía solar es una fuente de energía renovable que se obtiene a partir de la radiación del sol.
+Se considera una de las principales alternativas para reducir la dependencia de los combustibles fósiles
+y disminuir las emisiones de gases de efecto invernadero.
+
+Existen dos tipos principales de energía solar: la energía solar fotovoltaica y la energía solar térmica.
+
+La energía solar fotovoltaica convierte la radiación solar directamente en electricidad mediante el uso
+de celdas solares fabricadas principalmente con silicio. Estas celdas se agrupan en paneles solares que
+pueden instalarse en techos, estructuras metálicas o plantas solares a gran escala.
+
+La energía solar térmica, por otro lado, utiliza la radiación solar para generar calor. Este calor puede
+emplearse para calentar agua, producir vapor o apoyar procesos industriales. Es común encontrarla en
+sistemas de calentamiento de agua para viviendas, hospitales y hoteles.
+
+Entre las principales ventajas de la energía solar se encuentran su carácter renovable, su bajo impacto
+ambiental durante la operación y la reducción de costos a largo plazo. Además, permite la generación de
+energía distribuida, lo que significa que los usuarios pueden producir su propia electricidad.
+
+Sin embargo, la energía solar también presenta desafíos. Su producción depende de la radiación solar,
+por lo que factores como la ubicación geográfica, el clima y la hora del día influyen directamente en
+su eficiencia. Asimismo, el almacenamiento de energía requiere el uso de baterías, lo que incrementa
+los costos del sistema.
+
+En países como Colombia, la energía solar ha tomado relevancia en los últimos años debido a su ubicación
+geográfica privilegiada y a los incentivos gubernamentales para proyectos de energías renovables.

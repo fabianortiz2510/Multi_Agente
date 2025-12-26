@@ -30,12 +30,30 @@ class RagAgent:
         model.fit(chunks)
 
         query_vector = model.embed_query(query)
-        similarities = cosine_similarity(query_vector, model.matrix)
+        similarities = cosine_similarity(query_vector, model.matrix)[0]
 
-        best_index = similarities.argmax()
-        best_chunk = chunks[best_index]
+        # 🔹 Tomar los TOP K chunks
+        TOP_K = 3
+        top_indices = similarities.argsort()[-TOP_K:][::-1]
+
+        # 🔹 Umbral mínimo de similitud
+        SIMILARITY_THRESHOLD = 0.30
+
+        filtered_chunks = [
+            chunks[i]
+            for i in top_indices
+            if similarities[i] >= SIMILARITY_THRESHOLD
+        ]
+
+        if not filtered_chunks:
+            return (
+                " No tengo información suficiente en los documentos "
+                "para responder esa pregunta."
+            )
+
+        context = "\n\n".join(filtered_chunks)
 
         return (
-            "Respuesta basada en documentos locales:\n"
-            f"{best_chunk}"
+            " Respuesta basada exclusivamente en documentos locales:\n\n"
+            f"{context}"
         )
