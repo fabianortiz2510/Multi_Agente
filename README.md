@@ -119,7 +119,7 @@ You:
 
 The Geocoding Agent resolving natural language location queries into precise geographic coordinates using the Nominatim API from OpenStreetMap.
 
-![alt text](image-4.png)
+![alt text](docs/images/image-4.png)
 
 ### Weather Agent (External API)
 
@@ -127,7 +127,7 @@ Return weather conditions according to request provided by the user, when the qu
 
 E.g:
 
-![alt text](image.png)
+![alt text](docs/images/image.png)
 
 ### Crypto Agent (External API)
 
@@ -135,7 +135,7 @@ Perform requestes about crypto currencies.
 
 E.g:
 
-![alt text](image-1.png)
+![alt text](docs/images/image-1.png)
 
 ### RAG Agent (Local Documents)
 
@@ -148,11 +148,11 @@ E.g:
 
 It is created a .txt archive with information in string format.
 
-![alt text](image-5.png)
+![alt text](docs/images/image-5.png)
 
 When a request is sent to multi-agentit is recognized as a RAG agent. 
 
-![alt text](image-3.png)
+![alt text](docs/images/image-3.png)
 
 ## Final Notes
 
