@@ -1,16 +1,6 @@
+# Ignore environment variables file
 .env
+.venv
 
 # Python cache files
 __pycache__/
-*.py[cod]
-*.pyo
-*.pyd
-
-# Virtual environment
-venv/
-ENV/
-env/
-.venv/
-
-# Editor files
-.vscode/
