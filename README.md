@@ -15,32 +15,35 @@ The main goal for the project is to demonstrate:
 
 ```
 src/
-├── app.py                 # App Entry point
+├── app.py                 # Console-based assistant entry point
+├── server.py              # FastAPI HTTP service
 ├── graph.py               # Multi-agent definition process
 │
 ├── agents/
 │   ├── weather_agent.py   # weather agent (external API)
 │   ├── crypto_agent.py    # crypto agent (external API)
+│   ├── geocoding_agent.py # geocoding helper agent
 │   └── rag_agent.py       # RAG agent over local documents
 │
 ├── tools/
-│   ├── weather_service.py # API Open-Meteo
-│   ├── crypto_service.py  # API public currencies
-│   └── geocoding.py       # City - coordinates 
-|   └── openmeteo.py       # Weather data
-conversion
+│   ├── weather_service.py # Open-Meteo weather API
+│   ├── crypto_service.py  # CoinGecko crypto prices API
+│   └── geocoding.py       # City coordinates lookup
 │
 ├── rag/
-│   ├── loader.py          # Local documents load
-│   ├── chunker.py         # Tex segmentation 
-│   └── embeddings.py      # Vectorization (TF-IDF)
+│   ├── loader.py          # Load local documents
+│   ├── chunker.py         # Text segmentation / chunking
+│   ├── embeddings.py      # TF-IDF embeddings
+│   ├── retriever.py       # Document retrieval logic
+│   ├── pipeline.py        # RAG pipeline helpers
+│   └── generator.py       # Local answer generation
 │
 ├── llm/
 │   └── client.py          # LLM client configuration
 │
-tests/                     # Component Unit Test
+tests/                     # Component unit tests
 data/
-└── documents/             # Local documents over RAG
+└── documents/             # Local documents for RAG
 
 ```
 
@@ -73,45 +76,107 @@ The sistem is based on:
 - scikit-learn (TF-IDF embeddings)
 - python-dotenv (environment variables
 
-##  Environment Settings
+## Environment Settings
 
 A Python virtual environment is used to isolate dependencies and ensure reproducibility.
 
-###  Virtual Enviroment Deployment
-The project used a Python virtual environment for manage the dependences (LangChain, LangGraph)
+### Virtual Environment Deployment
 
-Virtual Environment creation:
-
-```bash
-python -m venv venv
-```
-Virtual Environment activation:
+Create the environment:
 
 ```bash
-venv\Scripts\Activate
+python -m venv .venv
 ```
-## Environment Variables Settings
 
-The APY KEY is used for language model (LLM) authentication given by OpenAI
+Activate the environment:
 
-``` 
-OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxx 
+```bash
+.venv\Scripts\Activate
 ```
-The API Key allows the access to LLM , by activating the comunication models with OPen AI models, interpreting every request in natural language process.
 
-### Project Execution
+### Install Dependencies
 
-From the project root:
-
+```bash
+pip install -r requirements.txt
 ```
+
+### Environment Variables
+
+Copy the template file to `.env` and add your OpenAI API key:
+
+```bash
+copy .env.template .env
+```
+
+Then edit `.env`:
+
+```env
+OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxx
+```
+
+This key is required for the LLM client to work.
+
+## Running the Project
+
+### 1) Console mode
+
+Start the assistant in terminal mode:
+
+```bash
 python -m src.app
 ```
-### Expected Output
 
-```
+Expected output:
+
+```text
 Multi-agent assistant (LangGraph) 🚀
 You:
 ```
+
+### 2) HTTP API mode
+
+Start the FastAPI server:
+
+```bash
+uvicorn src.server:app --reload --port 8000
+```
+
+Then open:
+
+- `http://localhost:8000` for the root health check
+- `http://localhost:8000/docs` for Swagger UI
+- `http://localhost:8000/redoc` for API docs
+
+### API Usage Example
+
+Use POST `/chat` with JSON body:
+
+```json
+{
+  "message": "clima en bogota"
+}
+```
+
+Sample curl request:
+
+```bash
+curl -X POST "http://localhost:8000/chat" -H "Content-Type: application/json" -d "{\"message\": \"precio de bitcoin\"}"
+```
+
+## Postman Example
+
+- Method: POST
+- URL: `http://localhost:8000/chat`
+- Body type: raw JSON
+- Body content:
+
+```json
+{
+  "message": "clima en medellin"
+}
+```
+
+The service will respond with the selected agent's output.
 
 ## Implemented Agents 
 
